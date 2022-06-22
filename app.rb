@@ -36,7 +36,14 @@ end
 # обработчик post-запроса /new
 # (браузер отправляет данные на сервер)
 post '/new' do
-
+	@p = Post.new params[:post]
+	
+	if @p.save
+		erb "<h2>Спасибо, вы  записались!</h2>"
+	else	
+		@error = @p.errors.full_messages.first
+		erb :new
+	end	
 end
 
 # вывод информации о посте
