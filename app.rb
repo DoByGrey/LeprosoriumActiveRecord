@@ -12,8 +12,8 @@ set :database, { adapter: 'sqlite3', database: 'leprosoriumAR.db' }
 class Post < ActiveRecord::Base
 end	
 
-#class Comment < ActiveRecord::Base
-#end	
+class Comment < ActiveRecord::Base
+end	
 
 before do
 	@posts = Post.all
