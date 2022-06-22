@@ -5,7 +5,7 @@ require 'sinatra/reloader'
 require 'sinatra/activerecord'
 
 # Создаем соединение с БД
-set :database, { adapter: 'sqlite3', database: 'leprosoriumAR.db' }
+set :database, { adapter: 'sqlite3', database: 'leprosoriumActiveRecord.db' }
 
 # Создаем модели Пост и Комментарий
 
