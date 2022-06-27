@@ -10,6 +10,7 @@ set :database, { adapter: 'sqlite3', database: 'leprosoriumActiveRecord.db' }
 # Создаем модели Пост и Комментарий
 
 class Post < ActiveRecord::Base
+	has_many :comments
 end	
 
 class Comment < ActiveRecord::Base
@@ -47,13 +48,24 @@ post '/new' do
 end
 
 # вывод информации о посте
-get '/details/:post_id' do
+get '/details/:id' do
 	
+	@post = Post.find(params[:id])
+	@comments = Comment.find(params[])
+
+	erb :details
 end	
 
 # обработчик post-запроса /details/...
 # (браузер отправляет данные на сервер, мы их принимаем)
 
-post '/details/:post_id' do
-
+post '/details/:id' do
+	@c = Comment.new params[:comment]
+	
+	if @c.save
+		erb :details
+	else	
+		@error = @c.errors.full_messages.first
+		erb :details
+	end	
 end	
